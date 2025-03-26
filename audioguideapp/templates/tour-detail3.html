@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/tour-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:01:26 GMT -->
+<head>
+<meta charset="utf-8">
+	{% load static %}
+<title>Traveler's Bible | Tours Detail</title>
+<!-- Stylesheets -->
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+<link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="{% static 'js/respond.js' %}"></script><![endif]-->
+	<style>
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left:12px;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
+  background-color: rgb(255, 255, 255);
+  padding: 0.8rem;
+  width: 33rem;
+}
+
+.rating-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.4rem 0.8rem;
+}
+
+.rating-text p {
+  color: rgba(0, 0, 16, 0.8);
+  font-size: 1.3rem;
+  padding: 0.3rem;
+}
+
+.rating {
+  background-color: white;
+  padding: 0.4rem 0.4rem 0.1rem 0.4rem;
+  border-radius: 2.2rem;
+}
+
+svg {
+  fill: rgb(242, 242, 242);
+  height: 3rem;
+  width: 3.6rem;
+  margin: 0.2rem;
+}
+
+#radios label {
+  position: relative;
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+input[type="radio"] + svg {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+input + svg {
+  cursor: pointer;
+}
+
+input[class="super-happy"]:hover + svg,
+input[class="super-happy"]:checked + svg,
+input[class="super-happy"]:focus + svg {
+  fill: rgb(0, 109, 217);
+}
+
+input[class="happy"]:hover + svg,
+input[class="happy"]:checked + svg,
+input[class="happy"]:focus + svg {
+  fill: rgb(0, 204, 79);
+}
+
+input[class="neutral"]:hover + svg,
+input[class="neutral"]:checked + svg,
+input[class="neutral"]:focus + svg {
+  fill: rgb(232, 214, 0);
+}
+
+input[class="sad"]:hover + svg,
+input[class="sad"]:checked + svg,
+input[class="sad"]:focus + svg {
+  fill: rgb(229, 132, 0);
+}
+
+input[class="super-sad"]:hover + svg,
+input[class="super-sad"]:checked + svg,
+input[class="super-sad"]:focus + svg {
+  fill: rgb(239, 42, 16);
+}
+
+
+
+	</style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+     <!-- Main Header-->
+    <header class="main-header header-style-one">
+        <div class="header-upper bg-light">
+        	<div class="auto-container">
+            	<div class="inner-container clearfix">
+
+                	<div class="pull-left logo-box">
+
+                    	<br><div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" width="200" title=""></a></div>
+                    </div>
+
+                   	<div class="nav-outer clearfix">
+						<!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+						<!-- Main Menu -->
+						<nav class="main-menu navbar-expand-md">
+							<div class="navbar-header">
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+
+							<div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
+								<ul class="navigation clearfix">
+									<li><a href="{% url 'home' %}">Home</a>
+									</li>
+									<li class="dropdown"><a href="#">About Us</a>
+										<ul>
+											<li><a href="{% url 'about' %}">About Us</a></li>
+
+
+											<li><a href="{% url 'faq' %}">Faq's</a></li>
+										</ul>
+									</li>
+									<li><a href="{% url 'tour' %}">Tours</a>
+									</li>
+											<li class="dropdown"><a href="#">Language</a>
+										<ul>
+											<li><a href="/tour-detail/{{ monument.id }}">English</a></li>
+											<li><a href="/tour-detail-guj/{{ monument.id }}">Gujarati</a></li>
+											<li><a href="/tour-detail-hindi/{{ monument.id }}">Hindi</a></li>
+										</ul>
+									</li>
+									<li><a href="{% url 'contact' %}">Contact</a></li>
+								</ul>
+							</div>
+						</nav>
+
+
+
+						<!-- Outer Box -->
+						<div class="outer-box">
+
+							<!-- Button Box -->
+							{% if request.session.logname %}
+							<div class="btn-box">
+								<a href="#" class="theme-btn btn-style-one logname"></i><span class="fa fa-user txt"> {{ request.session.logname }} {{ request.session.date }} </span></a>
+							</div>
+
+							<div class="btn-box">
+								<a href="{% url 'logout' %}" class="theme-btn btn-style-one"></i><span class="txt">Logout</span></a>
+							</div>
+							{% else %}
+							<div class="btn-box">
+								<a href="{% url 'register' %}" class="theme-btn btn-style-one logname"></i><span class="txt">Sign Up</span></a>
+							</div>
+							<div class="btn-box">
+								<a href="{% url 'login' %}" class="theme-btn btn-style-one"></i><span class="txt">Log In</span></a>
+							</div>
+                            {% endif %}
+
+
+
+							<!-- Nav Btn -->
+							<div class="nav-btn nav-toggler"><span class="icon flaticon-menu"></span></div>
+
+						</div>
+
+					</div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+		<!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><span class="icon fa fa-remove"></span></div>
+
+            <nav class="menu-box">
+				<div class="nav-logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            </nav>
+        </div><!-- End Mobile Menu -->
+
+    </header>
+    <!--End Main Header -->
+
+	<!-- Hidden Navigation Bar -->
+    <section class="hidden-bar right-align">
+
+        <div class="hidden-bar-closer">
+            <button><span class="flaticon-multiply"></span></button>
+        </div>
+
+        <!-- Hidden Bar Wrapper -->
+        <div class="hidden-bar-wrapper">
+
+            <div class="logo">
+            	<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo2.png' %}" alt="" /></a>
+            </div>
+            <div class="content-box">
+            	<h2>About Us</h2>
+                <div class="text"><p>Welcome to The Traveler's Bible, your ultimate source for travel inspiration and information. We are a team of passionate travelers and experienced tour guides who believe that travel should be accessible, enjoyable, and memorable for everyone.</p>
+
+                <a href="#" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a>
+            </div>
+            <div class="contact-info">
+            	 <div class="contact-info">
+            	<ul class="list-style-one">
+                	<li><span class="icon fa fa-map-marker"></span>Ahmedabad, Gujarat</li>
+                    <li><span class="icon fa fa-phone"></span>(91) 999-000-9999</li>
+                    <li><span class="icon fa fa-envelope-o"></span>audioguideformonument@gmail.com</li>
+                    <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+                </ul>
+            </div>
+        </div><!-- / Hidden Bar Wrapper -->
+
+    </section>
+    <!-- End / Hidden Bar -->
+
+	<!--Page Title-->
+    <section class="page-title" style="background-image:url({% static 'images/background/akshar.jpg' %})">
+    	<div class="auto-container">
+			<h2></h2>
+			<ul class="page-breadcrumb">
+				<li><a href="{% url 'home' %}">home</a></li>
+				<li>Tours Detail</li>
+			</ul>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+	<!-- Sidebar Page Container -->
+    <div class="sidebar-page-container">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+
+				<!--Sidebar Side-->
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                	<aside class="sidebar">
+
+
+						<!-- Sidebar Widget -->
+						<div class="sidebar-widget search-tour-widget">
+							<div class="widget-content">
+
+								<!-- Tour Search Tabs-->
+								<div class="tour-search-tabs">
+									<!-- Tours Tabs -->
+									<div class="tour-tabs tabs-box">
+
+										<!--Tab Btns-->
+										<ul class="tab-btns tab-buttons clearfix">
+											<li data-tab="#prod-filter" class="tab-btn active-btn">Search Places</li>
+										</ul>
+
+										<!--Tabs Container-->
+										<div class="tabs-content">
+
+											<!--Tab / Active Tab-->
+											<div class="tab active-tab" id="prod-filter">
+												<div class="content">
+
+													<!-- Tours Selection Form -->
+													<div class="tours-selection-form">
+															<h5>Cities </h5>
+
+															{% for city in cities %}
+															<div class="form-group">
+																	<label><a href="/tour-list/{{ city.id }}">{{ city.city_name }}</a></label>
+															</div>
+															{% endfor %}
+
+
+															<h5>Nearby Places</h5>
+															{% for place in places %}
+															<div class="form-group">
+																	<label><a href="/tour-detail-hindi/{{ place.id }}">{{ place.monument_name }}</a></label>
+															</div>
+															{% endfor %}
+
+
+													</div>
+
+												</div>
+											</div>
+
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</aside>
+				</div>
+
+					<!--Content Side-->
+                <div class="content-side col-lg-8 col-md-12 col-sm-12">
+					<div class="tours-detail">
+						<div class="inner-box">
+							<!-- Upper Box -->
+							<div class="upper-box">
+								<div class="row clearfix">
+
+									<div class="col-lg-7 col-md-12 col-sm-12">
+										<div class="rating">
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star-o"></span>
+											15+ Review
+										</div>
+										<h3>{{ monument.name_hindi }}</h3>
+										<div class="hotel-info">{{ monument.city_name }}, Gujarat</div>
+									</div>
+
+									<div class="col-lg-5 col-md-12 col-sm-12">
+										<div class="clearfix">
+											{% if request.session.logname %}
+											<a href="/audio-hindi/{{ monument.id }}" class="theme-btn btn-style-one" target="_blank"><span class="txt">ऑडियो सुनें</span></a>
+											{% else %}
+											<div class="btn-box">
+								            <a href="{% url 'login' %}" class="theme-btn btn-style-one"></i><span class="txt">Login To Listen Audio</span></a>
+							                </div>
+											{% endif %}
+										</div>
+										<div class="good">{{ monument.category }}</div>
+									</div>
+
+								</div>
+
+								<ul class="food-list">
+									<li><span class="icon flaticon-telephone"></span>{{ monument.contact_no }}</li>
+								</ul>
+
+							</div>
+
+							<!-- Listing Page -->
+							<div class="listing-page">
+
+								<div class="image-column">
+									<div class="carousel-outer">
+
+										<ul class="image-carousel owl-carousel owl-theme">
+											{% for image in images %}
+											<li><a href="{{ image.photos }}" class="lightbox-image" data-fancybox="images" data-caption="" title="Image Caption Here"><img src="/media/{{ image.photos }}" alt=""></a></li>
+											{% endfor %}
+										</ul>
+
+										<ul class="thumbs-carousel owl-carousel owl-theme">
+											{% for image in images %}
+											<li><img src="/media/{{ image.photos }}" alt=""></li>
+											{% endfor %}
+										</ul>
+
+									</div>
+								</div>
+
+							</div>
+
+
+							<h3>जानकारी</h3>
+							<h4>जगह के बारे में:</h4>
+							<p>{{ monument.info_Hindi|safe|linebreaks }}</p>
+							<p></p>
+							<h4>अतिरिक्त जानकारी:</h4>
+							<p>{{ monument.name_hindi }} की जानकारी यह जगह कहाँ है? कितने दिन खुलेगा और कब खुलेगा और कब बंद होगा।</p>
+							<div class="row clearfix">
+								<div class="column col-lg-4 col-md-4 col-sm-12">
+									<h5>यह जगह कहां है</h5>
+									<p>{{ monument.address_hindi }}</p>
+								</div>
+								<div class="column col-lg-4 col-md-4 col-sm-12">
+									<h5>समय</h5>
+									<p>{{ monument.timing }}</p>
+								</div>
+								<div class="column col-lg-4 col-md-4 col-sm-12">
+									<h5>दिन</h5>
+									<p>{{ monument.days }}</p>
+								</div>
+								<div class="column col-lg-4 col-md-4 col-sm-12">
+									<h5>संपर्क के लिए फ़ोन नंबर</h5>
+									<p>+91 {{ monument.contact_no }}</p>
+								</div>
+							</div>
+
+							<div class="two-columns">
+								<div class="row clearfix">
+
+									<div class="column col-lg-6 col-md-6 col-sm-12">
+										<h4>जगह:</h4>
+										<p>दुनिया एक किताब है, और जो यात्रा नहीं करते वे केवल एक पृष्ठ पढ़ते हैं।</p>
+
+										<iframe src="{{ monument.map_link }}" width="350" height="430" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+									</div>
+									<div class="column col-lg-6 col-md-6 col-sm-12">
+										<h4>तस्वीरें</h4>
+										<p>एक तस्वीर एक रहस्य के बारे में एक रहस्य है। जितना अधिक यह आपको बताता है, उतना ही कम आप जान पाते हैं।</p>
+										<div class="image">
+											<img src="/media/{{ monument.photo }}" alt="" />
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+							      <!--Guide Booking-->
+							<section class="testimonial-section style-two">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2>Choose Your Guide For this Monument</h2>
+				<div class="big-title">Guides</div>
+			</div>
+			<div class="single-item-carousel owl-carousel owl-theme">
+
+				<!-- Testimonial Block -->
+				<div class="testimonial-block">
+					<div class="inner-box">
+						<div class="author-info">
+							<div class="author-image">
+								<img src="{% static 'images/resource/author-1.jpg' %}" alt="" />
+							</div>
+							<h4>Sutariya Akshil</h4>
+							<div class="designation">Price : 340Rs.</div>
+						</div>
+						{% if request.session.logname %}
+						<div class="text"><div class="btn-box">
+								<a href="/guide/Sutariya Akshil/{{ monument.id }}/340" class="theme-btn btn-style-one"></i><span class="fa fa-add txt">Book Guide</span></a>
+							</div></div>
+						{% else %}
+						<p>login to book a guide <a href="{% url 'login' %}">Login Now</a></p>
+						{% endif %}
+					</div>
+				</div>
+
+				<!-- Testimonial Block -->
+				<div class="testimonial-block">
+					<div class="inner-box">
+						<div class="author-info">
+							<div class="author-image">
+								<img src="{% static 'images/resource/author-1.jpg' %}" alt="" />
+							</div>
+							<h4>Patel Divy</h4>
+							<div class="designation">Price : 300Rs.</div>
+						</div>
+					{% if request.session.logname %}
+						<div class="text"><div class="btn-box">
+								<a href="/guide/Patel Divy/{{ monument.id }}/300" class="theme-btn btn-style-one"></i><span class="fa fa-add txt">Book Guide</span></a>
+							</div></div>
+						{% else %}
+						<p>login to book a guide <a href="{% url 'login' %}">Login Now</a> </p>
+						{% endif %}
+					</div>
+				</div>
+
+				<!-- Testimonial Block -->
+				<div class="testimonial-block">
+					<div class="inner-box">
+						<div class="author-info">
+							<div class="author-image">
+								<img src="{% static 'images/resource/author-1.jpg' %}" alt="" />
+							</div>
+							<h4>Chaudhari Rushikesh</h4>
+							<div class="designation">Price : 200Rs.</div>
+						</div>
+						{% if request.session.logname %}
+						<div class="text"><div class="btn-box">
+								<a href="/guide/Chaudhari Rushikesh/{{ monument.id }}/200" class="theme-btn btn-style-one"></i><span class="fa fa-add txt">Book Guide</span></a>
+							</div></div>
+						{% else %}
+						<p>login to book a guide <a href="{% url 'login' %}">Login Now</a> </p>
+						{% endif %}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+							<!--End of Guide Booking-->
+
+
+							<h4>Ratings & Reviews :</h4>
+							<!-- Skill Outer -->
+							<div class="skills-outer">
+								<div class="skills-inner">
+									<div class="left-content">
+										<div class="rating">
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star-o"></span>
+										</div>
+										<div class="rating-review">4.75 <br> 263 reviews</div>
+										<div class="excellent">Excellent</div>
+									</div>
+									<div class="skill-content">
+
+										<!--Skills-->
+										<div class="skills">
+
+											<!--Skill Item-->
+											<div class="skill-item">
+												<div class="skill-header clearfix">
+													<div class="skill-title">Excellent</div>
+													<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="100">0</span>%</div></div>
+												</div>
+												<div class="skill-bar">
+													<div class="bar-inner"><div class="bar progress-line" data-width="100"></div></div>
+												</div>
+											</div>
+
+											<!--Skill Item-->
+											<div class="skill-item">
+												<div class="skill-header clearfix">
+													<div class="skill-title">Very Good</div>
+													<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="55">0</span>%</div></div>
+												</div>
+												<div class="skill-bar">
+													<div class="bar-inner"><div class="bar progress-line" data-width="55"></div></div>
+												</div>
+											</div>
+
+											<!--Skill Item-->
+											<div class="skill-item">
+												<div class="skill-header clearfix">
+													<div class="skill-title">Average</div>
+													<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="65">0</span>%</div></div>
+												</div>
+												<div class="skill-bar">
+													<div class="bar-inner"><div class="bar progress-line" data-width="65"></div></div>
+												</div>
+											</div>
+
+											<!--Skill Item-->
+											<div class="skill-item">
+												<div class="skill-header clearfix">
+													<div class="skill-title">Poor</div>
+													<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="85">0</span>%</div></div>
+												</div>
+												<div class="skill-bar">
+													<div class="bar-inner"><div class="bar progress-line" data-width="85"></div></div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Comments Area -->
+							<div class="comments-area">
+								<div class="group-title">
+									<h5>{{ feedbacks|length }} Comments</h5>
+								</div>
+
+
+								{% for i in feedbacks %}
+								<div class="comment-box">
+									<div class="comment">
+
+										<div class="author-thumb"><img src="/media/{{ i.photo }}" alt=""></div>
+
+										<div class="comment-info clearfix"><strong>{{ i.user_id }}</strong><div class="comment-time">{{ i.date }} </div></div>
+										<div class="text">{{ i.comment }} </div>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div>
+
+							{% if request.session.logname %}
+
+							<!-- Comment Form -->
+							<div class="comment-form">
+
+								<div class="group-title">
+									<h5>Leave A Reply</h5>
+									<div class="form-text">Your email address will not be published. Required fields are marked *</div>
+								</div>
+
+								<!--Comment Form-->
+								<form method="post" action="/tour-detail/{{ monument.id }}/{{ request.session.logid }}">
+									{% csrf_token %}
+									<div class="row clearfix">
+										<div class="form-group col-lg-12 col-md-12 col-sm-12">
+											<label>Message *</label>
+											<textarea class="" name="message" placeholder="Message" required></textarea>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 form-group">
+											<button class="theme-btn btn-style-one" type="submit" name="submit-form"><span class="txt">Submit Comment</span></button>
+										</div>
+
+									</div>
+								</form>
+
+							</div>
+							<!--End Comment Form -->
+							{% else %}
+							<br>
+							<p>Please <a href="{% url 'login' %}">Login</a> To Leave Comment!</p>
+
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Call To Action Section -->
+	<section class="call-to-action-section" style="background-image:url({% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %})">
+		<div class="auto-container">
+			<h2>Discover the beauty and <br>culture of your destination </h2>
+<!--			<div class="street">700 MAIN STREET</div>--><br><br>
+			<a href="{% url 'tour' %}" class="theme-btn btn-style-one"><span class="txt">Trending Tour</span></a>
+		</div>
+	</section>
+	<!-- End Call To Action Section -->
+
+	<!-- Main Footer -->
+    <footer class="main-footer style-two" style="background-image:url({% static 'images/background/5.jpg' %})">
+		<div class="auto-container">
+
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+
+            	<div class="row clearfix">
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<div class="logo">
+                                    	<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" /></a>
+                                    </div>
+									<div class="text">We aim to ensure that you never miss an opportunity to travel.</div>
+									<!-- Social Nav -->
+									<ul class="social-nav">
+										<li class="follow">Follow Us</li>
+										<li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+										<li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+										<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+										<li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+										<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+									</ul>
+									<div class="newsletter-box">
+										<div class="newsletter-text">Subscribe to Our Newsletter</div>
+										<!-- Newsletter Form -->
+										<div class="newsletter-form">
+											<form method="post" action="{% url 'contact' %}">
+												<div class="form-group clearfix">
+													<input type="email" name="email" placeholder="Enter Your Email Address" required>
+													<button type="submit" class="theme-btn join-btn"><span class="txt">Join</span></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>solutions</h5>
+									<ul class="footer-list">
+										<li><a href="#destination">Destination</a></li>
+										<li><a href="{% url 'tour' %}">Attractions</a></li>
+										<li><a href="#heritage">Heritage</a></li>
+										<li><a href="#">Events & Festivals</a></li>
+										<li><a href="#">Food & Restaurants</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>explore</h5>
+									<ul class="footer-list">
+									<li><a href="{% url 'home' %}">Home</a></li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'tour' %}">Tours</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+										</ul>
+								</div>
+							</div>
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget news-widget">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Footer Bottom -->
+			<div class="footer-bottom">
+				<div class="copyright">&copy; 2023 All Rights Reserved Terms of Use By <b style="color:35px;">Traveler's Bible</b></div>
+			</div>
+		</footer>
+
+</div>
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-circle-up"></span></div>
+
+<!-- Search Popup -->
+<div id="search-popup" class="search-popup">
+	<div class="close-search theme-btn"><span class="flaticon-multiply"></span></div>
+	<div class="popup-inner">
+		<div class="overlay-layer"></div>
+    	<div class="search-form">
+        	<form method="post" action="https://gico.io/ghurbo/demos/ghurbo/index.html">
+            	<div class="form-group">
+                	<fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn">
+                    </fieldset>
+                </div>
+            </form>
+
+            <br>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Beauty</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Food</a></li>
+                <li><a href="#">LifeStyle</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<!--Google Map APi Key-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD39_Mb1wKUcuRD-0KPmQT6SQHhEMVX1O0"></script>
+<script src="{% static 'js/map-script.js' %}"></script>
+<!--End Google Map APi-->
+
+</body>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/tour-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:02:13 GMT -->
+</html>

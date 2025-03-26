@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+<meta charset="utf-8">
+	{% load static %}
+<title>Traveler's Bible</title>
+<!-- Stylesheets -->
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style1.css' %}" rel="stylesheet">
+<link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!--	<link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">-->
+<!--<link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">-->
+
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="{% static 'js/respond.js' %}"></script><![endif]-->
+</head>
+
+
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+  <!-- Main Header-->
+    <header class="main-header header-style-one">
+        <div class="header-upper bg-light">
+        	<div class="auto-container">
+            	<div class="inner-container clearfix">
+
+                	<div class="pull-left logo-box">
+
+                    	<br><div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" width="200" title=""></a></div>
+                    </div>
+
+                   	<div class="nav-outer clearfix">
+						<!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+						<!-- Main Menu -->
+						<nav class="main-menu navbar-expand-md">
+							<div class="navbar-header">
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+
+							<div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
+								<ul class="navigation clearfix">
+									<li class="current"><a href="{% url 'home' %}">Home</a></li>
+									<li class="dropdown"><a href="#">About Us</a>
+										<ul>
+											<li><a href="{% url 'about' %}">About Us</a></li>
+
+
+											<li><a href="{% url 'faq' %}">Faq's</a></li>
+										</ul>
+									</li>
+									<li><a href="{% url 'tour' %}">Tours</a>
+									</li>
+									<li><a href="{% url 'contact' %}">Contact</a></li>
+								</ul>
+							</div>
+						</nav>
+
+
+
+						<!-- Outer Box -->
+						<div class="outer-box">
+
+							<!-- Button Box -->
+							{% if request.session.logname %}
+							<div class="btn-box">
+								<a href="{% url 'userprofile.html' %}" class="theme-btn btn-style-one logname"></i><span class="fa fa-user txt"> {{ request.session.logname }} {{ request.session.date }} </span></a>
+							</div>
+
+							<div class="btn-box">
+								<a href="{% url 'logout' %}" class="theme-btn btn-style-one"></i><span class="txt">Logout</span></a>
+							</div>
+							{% else %}
+							<div class="btn-box">
+								<a href="{% url 'register' %}" class="theme-btn btn-style-one logname"></i><span class="txt">Sign Up</span></a>
+							</div>
+							<div class="btn-box">
+								<a href="{% url 'login' %}" class="theme-btn btn-style-one"></i><span class="txt">Log In</span></a>
+							</div>
+                            {% endif %}
+							{% if request.session.logname %}
+							<!-- Cart Box -->
+							<div class="cart-box">
+								<div class="dropdown">
+									<button class="cart-box-btn dropdown-toggle  " type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-cart-3"><i class="total">{{ guide | length }}</i></span>  Guide Profile </button>
+									<div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu">
+
+										{% for book in guide %}
+										<div class="cart-product">
+											<div class="inner">
+												<div class="image"><img src="{% static 'images/icons/user.png' %}" alt="" /></div>
+												<h3><a href="guide-single/{{ book.id }}">Guide-Name : {{ book.guide_name }}</a></h3>
+											</div>
+										</div>
+										{% endfor %}
+
+										<div class="cart-total">Sub Total: <span>{{ total }}Rs.</span></div>
+
+									</div>
+								</div>
+							</div>
+							<!-- End Cart Box -->
+							{% endif %}
+
+							<!-- Nav Btn -->
+							<div class="nav-btn nav-toggler"><span class="icon flaticon-menu"></span></div>
+
+						</div>
+
+					</div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+    </header>
+    <!--End Main Header -->
+
+
+	<!-- Hidden Navigation Bar -->
+    <section class="hidden-bar right-align">
+
+        <div class="hidden-bar-closer">
+            <button><span class="flaticon-multiply"></span></button>
+        </div>
+
+        <!-- Hidden Bar Wrapper -->
+        <div class="hidden-bar-wrapper">
+
+            <div class="logo">
+            	<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo2.png' %}" alt="" /></a>
+            </div>
+            <div class="content-box">
+            	<h2>About Us</h2>
+				<div class="text"><p>Welcome to The Traveler's Bible, your ultimate source for travel inspiration and information. We are a team of passionate travelers and experienced tour guides who believe that travel should be accessible, enjoyable, and memorable for everyone.</p>
+					</div>
+                <a href="{% url 'contact' %}" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a>
+            </div>
+              <div class="contact-info">
+            	<h2>Contact Info</h2>
+                <ul class="list-style-one">
+                	<li><span class="icon fa fa-map-marker"></span>Ahmedabad Gujarat</li>
+                    <li><span class="icon fa fa-phone"></span>(91) 999-000-9999</li>
+                    <li><span class="icon fa fa-envelope-o"></span>audioguideformonument@gmail.com</li>
+                    <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+                </ul>
+        </div><!-- / Hidden Bar Wrapper -->
+
+		</div></section>
+    <!-- End / Hidden Bar -->
+
+	{% if messages %}
+	{% for message in messages %}
+	<p>{{ message }}</p>
+	{% endfor %}
+	{% endif %}
+
+	<!-- Slider Section -->
+    <section class="slider-section">
+		<div class="banner-carousel owl-theme owl-carousel">
+
+			<!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/kirti-mandir.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+
+			 <!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/India.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+			 <!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/carousel-2.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/Sun-Temple-Banner.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+
+			 <!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/Dwarkadhish Temple30.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+
+			 <!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/Dwarkadhish-Temple-1.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+
+			<!-- Slide Item -->
+            <div class="slide-item">
+            	<div class="image-layer" style="background-image:url({% static 'images/main-slider/carousel-1.jpg' %})"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+						<br><br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Slider Section -->
+
+	<!-- Donation Form Section Two -->
+	<section class="donation-form-section-two">
+		<div class="auto-container">
+			<div class="inner-container">
+			</div>
+		</div> <br>
+	</section>
+	<!-- End Donation Form Section Two -->
+
+	<!-- Destination Section Two -->
+	<section class="destinations-section-two">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2 id="destination">Destinations</h2>
+				<div class="text">Discover the best destinations in Gujarat with Us. <br> Experience the rich cultural heritage through our informative and interactive audio-based guide system. <br> Accessible in multiple languages, we make exploring the monuments and tourist destinations of Gujarat effortless. <br> Plan your next adventure with us.</div>
+				<div class="big-title style-two">Trending </div>
+			</div>
+
+			<div class="three-item-carousel owl-carousel owl-theme" >
+
+				<!-- Destinations Block -->
+				{% for i in monuments %}
+				<div class="destinations-block style-two">
+					<div class="inner-box">
+						<a href="tour-detail/{{ i.id }}">
+						<div class="image" style="width:350px; height:600px;">
+							<img src="/media/{{ i.photo }}"  alt="" />
+							<!-- Overlay Box -->
+							<div class="overlay-box">
+								<div class="overlay-inner">
+									<div class="content" >
+										<h3>{{ i.monument_name }}</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						</a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+		</div>
+	</section><!-- End Destination Section Two -->
+
+	<!-- Tours Section Two -->
+<section class="tours-section-two container">
+	<div class="row clearfix">
+
+		<!-- Tour Block Two -->
+		{% for monument in monuments %}
+		<div class="tour-block-two col-lg-3 col-md-6 col-sm-12">
+			<div class="inner-box">
+				<div class="image">
+					<a href="/tour-detail/{{ monument.id }}"><img src="/media/{{ monument.photo }}" alt="" / style="height:300px;"></a>
+				</div>
+				<div class="lower-content">
+					<div class="price" style="maring-bottom:-20px;">{{ monument.category }}</div>
+					<div class="rating">
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star-o"></span>
+						15+ Review
+					</div>
+					<h4><a href="/tour-detail/{{ monument.id }}">{{ monument.monument_name }}</a></h4>
+					<div class="location">{{ monument.cityid }}</div>
+					<div class="hotel-info">{{ monument.timing }} <span>{{ monument.days }}</span></div>
+					<ul class="food-list">
+						<li><span class="icon flaticon-telephone"></span>{{ monument.contact_no }}</li>
+					</ul>
+					<br>
+					<br>
+					<a href="/tour-detail/{{ monument.id }}" class="theme-btn btn-style-one"><span class="txt">Explore</span></a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+</section>
+	<!-- End Tours Section Two -->
+
+	<!-- Video Section Two -->
+	<section class="video-section-two">
+		<div class="auto-container">
+			<!-- Video Box -->
+			<div class="video-box-two">
+				<div class="image">
+					<div class="sec-title centered">
+				<h2>Indian Culture</h2>
+				<div class="text">A nation's culture resides <br> in the hearts and in the <br> soul of its people.</div>
+				<div class="big-title">Indian Culture</div>
+			</div>
+					<img src="{% static 'images/resource/gujarat tourism.jpg' %}" alt="" />
+					<a href="https://youtu.be/MNvUFMv1O9U" class="lightbox-image overlay-box"><span class="flaticon-media-play-symbol"><i class="ripple"></i></span></a>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Video Section Two -->
+
+	<!-- Agency Section Two -->
+	<section class="agency-section-two">
+		<div class="auto-container">
+			<div class="row clearfix">
+
+				<!-- Content Column -->
+				<div class="content-column col-lg-7 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<!-- Sec Title -->
+						<div class="sec-title">
+							<div class="title">Best agency</div>
+							<h2>Why choose our  <br> agency</span></h2>
+						</div>
+						<div class="text">
+							<p>Welcome to our tourism guide website, your ultimate resource for exploring the rich cultural heritage of Gujarat. Our website is designed to provide comprehensive information and a unique audio-based experience for visitors looking to discover the monuments and tourist destinations in Gujarat. </p>
+							<p> With in-depth information and an engaging audio-based guide system, our website offers a comprehensive and interactive way to learn about the history and cultural significance of each location. Additionally, our website provides information in multiple languages, making it accessible to a wider audience and ensuring that visitors have the information they need to fully appreciate each location.</p>
+							<p>Plus, with the ability to provide ratings and reviews, visitors can share their experiences and help others plan their trips. If you have any questions or concerns, our dedicated customer support team is always ready to assist you.</p>
+							<p>Choose our tourism guide website for a unique, informative, and enjoyable experience exploring the monuments and tourist destinations of Gujarat.</p>
+						</div>
+						<div class="holiday">Make Your Holiday Special With Us</div>
+					</div>
+				</div>
+
+				<!-- Blocks Column -->
+				<div class="blocks-column col-lg-5 col-md-12 col-sm-12">
+					<div class="inner-column" style="background-image:url({% static 'images/background/3.jpg' %})">
+
+						<!-- Agency Block -->
+						<div class="agency-block">
+							<div class="inner-box">
+								<div class="icon-box">
+									<span class="icon flaticon-trust"></span>
+								</div>
+								<h4>Trust &  Informative  </h4>
+								<div class="agency-text">Our tourism guide website is a reliable source of information for exploring the monuments and tourist destinations of Gujarat. With accurate information and an interactive audio-based guide system, we provide a unique and informative experience for visitors. Our website is also accessible in multiple languages and offers easy online ticket booking. Trust us for a memorable and enjoyable trip.</div>
+							</div>
+						</div>
+
+						<!-- Agency Block -->
+						<div class="agency-block">
+							<div class="inner-box">
+								<div class="icon-box">
+									<span class="icon flaticon-travel"></span>
+								</div>
+								<h4>Multi-Language Support</h4>
+								<div class="agency-text">Multi-Language Support: The website information is available in multiple languages, making it accessible to tourists from around the gujarat.</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End Agency Section Two -->
+
+	<!-- Counter Section -->
+	<section class="counter-section">
+		<div class="auto-container">
+			<div class="inner-container" style="background-image:url({% static 'images/background/map-pattern.png' %})">
+
+				<!-- Fact Counter -->
+				<div class="fact-counter">
+					<div class="row clearfix">
+
+						<!--Column-->
+						<div class="column counter-column col-lg-4 col-md-6 col-sm-12">
+							<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<div class="count-outer count-box">
+									<div class="icon flaticon-journey"></div>
+									<div class="counter-title">Gujarat</div>
+<!--									<span class="count-text" data-speed="3000ms" data-stop="0">0</span>K+-->
+								</div>
+							</div>
+						</div>
+
+						<!--Column-->
+						<div class="column counter-column col-lg-4 col-md-6 col-sm-12">
+							<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<div class="count-outer count-box">
+									<div class="icon flaticon-travel"></div>
+									<div class="counter-title">Total Cities</div>
+									<span class="count-text" data-speed="2500" data-stop="31">0</span>
+								</div>
+							</div>
+						</div>
+
+						<!--Column-->
+						<div class="column counter-column col-lg-4 col-md-6 col-sm-12">
+							<div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+								<div class="count-outer count-box">
+									<div class="icon flaticon-review"></div>
+									<div class="counter-title">Rating of website</div>
+									<span class="count-text" data-speed="2000" data-stop="20">0</span>+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="text">Our website provides detailed information about 31 cities around the Gujarat, highlighting their unique culture, history, and popular tourist attractions. <br>
+Our aim is to provide a comprehensive travel guide to help visitors plan their trip to these cities of places and make the most of their travel experience.</div>
+				<div class="btn-box text-center">
+					<a href="{% url 'tour' %}" class="theme-btn btn-style-one"><span class="txt">THINGS TO DO</span></a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Counter Section -->
+
+
+	<!-- Trip Section -->
+	<section class="trip-section style-two">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2 id="heritage">Heritage Hues of Gujarat</h2>
+				<div class="text">Experience the natural beauty of Gujarat, with its pristine beaches, breathtaking wildlife, and rolling hills, making it a perfect destination for adventure and relaxation.</div>
+
+			</div>
+			<div class="tours-carousel owl-carousel owl-theme">
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/peakpx.jpg' %}" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Statue Of Unity</a></h4>
+									<div class="text">"A symbol of unity and strength, the Statue of Unity stands tall as a tribute to one of India's greatest leaders."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image" >
+							<img src="{% static 'images/places/lenstravelier-S7jAc7OmU9c-unsplash.jpg' %}" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Gir National Park</a></h4>
+									<div class="text">"Surrounded by lush forests and rolling hills, Gir National Park is a paradise for wildlife enthusiasts and nature lovers alike, providing a window into the beauty and diversity of India's wildlife."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/India - Architecture and Nature.jpg' %}" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Sabarmati Ashram</a></h4>
+									<div class="text">"Preserved as a museum, Sabarmati Ashram provides a fascinating glimpse into Gandhi's life and work, inspiring visitors with its message of peace, equality, and justice for all."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/Dwarka, Gujarat.jpg' %}" height="370px" width="490px" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Dwarka</a></h4>
+									<div class="text">"With its picturesque temples, tranquil beaches, and rich history, Dwarka offers visitors a unique blend of spirituality, beauty, and serenity, making it a must-visit destination for travelers to India."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/Modhera Sun Temple.png' %}" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Modhera Sun Temple</a></h4>
+									<div class="text">"With its intricate carvings, beautifully proportioned pillars, and tranquil courtyards, Modhera Sun Temple is a place of peace and inspiration, offering a glimpse into India's rich spiritual and cultural heritage."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/Rani Ki Vav.jpg' %}" height="370px" width="490px" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Rani Ki Vav</a></h4>
+									<div class="text">"The intricate carvings and sculptures of Rani Ki Vav are a testament to the rich cultural heritage of India."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/Adalaj.jpg' %}" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#"> Adalaj stepwell</a></h4>
+									<div class="text">"Adalaj stepwell, a masterpiece of engineering and art, takes one on a journey through history and the human imagination."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trip Block -->
+				<div class="trip-block">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{% static 'images/places/ran kutch.jpg' %}" alt="" />
+							<div class="overlay-box">
+								<div class="content">
+									<h4><a href="#">Kutch</a></h4>
+									<div class="text">"A visit to Kutch is a journey of discovery, where the rugged landscapes and vibrant communities leave a lasting impression."</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End Trip Section -->
+
+	<!-- Counter Section -->
+	<section class="counter-section">
+		<div class="container">
+			<div class="row">
+              <div class="col-12">
+                <div class="section-title text-center">
+                  <div class="col-lg-8" style="text-align: center; margin: auto;">
+                    <h3><span style="text-align: center;width: 50%;margin: auto;"> <span class="textcolorB1">CULTURE OF GUJARAT !</span></span></h3>
+                    <div class="linecolor2"></div>
+                    </div>
+
+                </div>
+                <!-- end section-title -->
+              </div>
+              <!-- end col-12 -->
+            </div>
+            <!-- end row -->
+
+            <div class="row justify-content-center" style="margin: auto;">
+              <div class="col-lg-4 col-md-6">
+                <div class="collection-box" data-scroll data-scroll-speed="1.5" >
+                  <div class="mycontainer">
+
+                              <div class="card" onclick="flip(event)">
+                                <div class="front">
+
+                                     <video src="{% static 'videos/The_Challenge_low.mp4' %}" loop autoplay playsinline muted>
+									 </video>
+                                  <!-- </video> -->
+                                </div>
+                                <div class="back">
+
+                                  <h6 class="textcolorD">The Challenge</h6>
+                                   <!--<div class="linecolor6"></div>-->
+                                           <p><span style="font-size: 16px;">The World Heritage Sites in India, despite their scale and grandeur, lack authentic interpretation in vernacular languages for the myriad audiences visiting them.</span></p><p>&nbsp;</p><p><span style="font-size: 16px;">The local artisans in and around these sites are seldom compensated fairly for their products and services leading to many of them drifting away from their traditional crafts to more mass-produced goods.</span></p><p>&nbsp;</p><p><span style="font-size: 16px;">The heritage sites have become mere picnic spots and Instagram opportunity for children visiting them, instead of being knowledge dissemination centres.</span>
+                                        </p>
+                                </div>
+                              </div>
+                             </div>
+
+                </div>
+                <!-- end collection-box -->
+              </div>
+              <!-- end col-4 -->
+              <div class="col-lg-4 col-md-6">
+                <div class="collection-box" data-scroll data-scroll-speed="1" >
+                  <div class="mycontainer">
+
+                              <div class="card" onclick="flip(event)">
+                                <div class="front">
+                                     <video src="{% static 'videos/The_Initiative-low.mp4' %}" loop autoplay playsinline muted> </video>
+                                </div>
+                                <div class="back">
+                                  <h6 class="textcolorD">The Initiative</h6>
+                                   <!--<div class="linecolor6"></div>-->
+                                        <p><span style="font-size: 16px;">Traveler's Bible offers a platform that integrates new-age technology of Augmented Reality (AR), Geo Fencing and Multimedia to enhance visitor experience of the World Heritage Sites in India and connect with host communities.</span></p><p>&nbsp;</p><p><span style="font-size: 16px;">The content for these sites is acurated with support from the globally renowned knowledge partners in the cultural heritage and conservation domains.</span></p>
+
+                                </div>
+                              </div>
+
+
+                             </div>
+                 <!--<h4 style="text-align: center;">The Initiative</h4>-->
+
+                </div>
+                <!-- end collection-box -->
+              </div>
+              <!-- end col-4 -->
+              <div class="col-lg-4 col-md-6">
+                <div class="collection-box" data-scroll data-scroll-speed="0.5" >
+                 <div class="mycontainer">
+
+                                  <div class="card" onclick="flip(event)">
+                                    <div class="front">
+                                     <video src="{% static 'videos/The_impact_low.mp4' %}" loop autoplay playsinline muted> </video>
+                                    </div>
+                                    <div class="back">
+                                      <h6 class="textcolorD">The Impact</h6>
+                                      <!--<div class="linecolor6"></div>-->
+                                        <p><span style="font-size: 16px;">Traveler's Bible self-guided heritage trails help travelers experience the culture, art, and culinary delights of the local communities and encourage them to buy authentic products directly from the artisans, thereby creating a viable livelihood for them. Through its school outreach program, Traveler Bible enables children apply classroom knowledge using the Gujarat Heritage Sites as premises for knowledge dissemination.</span></p><p>&nbsp;</p><p><span style="font-size: 16px;">Traveler Bible, in alignment with United Nations' Sustainable Development Goals 4, 8, and 11, promotes and preserves intangible cultural heritage of India, enables community employability, and facilitates experiential education for sustainable development.</span>
+                                            </p>
+                                    </div>
+                                  </div>
+
+
+                            </div>
+                  <!--<h4 style="text-align: center;">The Impact</h4>-->
+
+                </div>
+                <!-- end collection-box -->
+              </div>
+              <!-- end col-4 -->
+
+            </div>
+            <!-- end row -->
+<!--			<div class="inner-container" style="background-image:url({% static 'images/background/map-pattern.png' %})">-->
+
+<!--				&lt;!&ndash; Fact Counter &ndash;&gt;-->
+<!--				<div class="fact-counter">-->
+<!--					<div class="row clearfix">-->
+
+<!--						&lt;!&ndash;Column&ndash;&gt;-->
+<!--						<div class="column counter-column col-lg-4 col-md-6 col-sm-12">-->
+<!--							<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">-->
+<!--								<div class="count-outer count-box">-->
+<!--									<div class="icon flaticon-journey"></div>-->
+<!--									<div class="counter-title">Gujarat</div>-->
+<!--&lt;!&ndash;									<span class="count-text" data-speed="3000ms" data-stop="0">0</span>K+&ndash;&gt;-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						&lt;!&ndash;Column&ndash;&gt;-->
+<!--						<div class="column counter-column col-lg-4 col-md-6 col-sm-12">-->
+<!--							<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">-->
+<!--								<div class="count-outer count-box">-->
+<!--									<div class="icon flaticon-travel"></div>-->
+<!--									<div class="counter-title">Total Cities</div>-->
+<!--									<span class="count-text" data-speed="2500" data-stop="31">0</span>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						&lt;!&ndash;Column&ndash;&gt;-->
+<!--						<div class="column counter-column col-lg-4 col-md-6 col-sm-12">-->
+<!--							<div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">-->
+<!--								<div class="count-outer count-box">-->
+<!--									<div class="icon flaticon-review"></div>-->
+<!--									<div class="counter-title">Rating of places</div>-->
+<!--									<span class="count-text" data-speed="2000" data-stop="20">0</span>+-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+
+<!--					</div>-->
+<!--				</div>-->
+
+<!--				<div class="text">Along with 1000s of cars to choose from, you can apply for finance online and value <br> your existing car all from the comfort of your favourite armchair</div>-->
+<!--				<div class="btn-box text-center">-->
+<!--					<a href="#" class="theme-btn btn-style-one"><span class="txt">THINGS TO DO</span></a>-->
+<!--				</div>-->
+<!--			</div>-->
+		</div>
+	</section>
+	<!-- End Counter Section -->
+
+
+
+	<!-- Call To Action Section -->
+	<section class="call-to-action-section" style="background-image:url({% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %})">
+		<div class="auto-container">
+			<h2>Discover the beauty and <br>culture of your destination </h2>
+<!--			<div class="street">700 MAIN STREET</div>--><br><br>
+			<a href="{% url 'tour' %}" class="theme-btn btn-style-one"><span class="txt">Trending Tour</span></a>
+		</div>
+	</section>
+	<!-- End Call To Action Section -->
+	<!-- Main Footer -->
+    <footer class="main-footer style-two" style="background-image:url({% static 'images/background/5.jpg' %})">
+		<div class="auto-container">
+
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+
+            	<div class="row clearfix">
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" /></a>
+
+									<div class="text">We aim to ensure that you never miss an opportunity to travel.</div>
+									<!-- Social Nav -->
+									<ul class="social-nav">
+										<li class="follow">Follow Us</li>
+										<li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+										<li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+										<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+										<li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+										<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+									</ul>
+									<div class="newsletter-box">
+										<div class="newsletter-text">Subscribe to Our Newsletter</div>
+										<!-- Newsletter Form -->
+										<div class="newsletter-form">
+											<form method="post" action="{% url 'contact' %}">
+												<div class="form-group clearfix">
+													<input type="email" name="email" placeholder="Enter Your Email Address" required>
+													<button type="submit" class="theme-btn join-btn"><span class="txt">Join</span></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>Explore</h5>
+									<ul class="footer-list">
+										<li><a href="{% url 'home' %}">Home</a></li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'tour' %}">Tours</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>Contact Info</h5>
+									<ul class="footer-list">
+										<li><span class="icon fa fa-map-marker"></span>&nbsp;Ahmedabad Gujarat</li>
+										<li><span class="icon fa fa-phone"></span>&nbsp;(91) 999-000-9999</li>
+										<li><span class="icon fa fa-envelope-o"></span>&nbsp;audioguideformonument@gmail.com</li>
+										<li><span class="icon fa fa-clock-o"></span>&nbsp;Week Days: 09.00 to 18.00 Sunday: Closed</li>
+										</ul>
+								</div>
+							</div>
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget news-widget">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Footer Bottom -->
+			<div class="footer-bottom">
+				<div class="copyright">&copy; 2023 All Rights Reserved Terms of Use By <b style="color:35px;">Traveler's Bible</b></div>
+			</div>
+	</footer>
+</div>
+<!-- End pagewrapper -->
+
+<!-- Scroll to top -->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-circle-up"></span></div>
+
+<!-- Search Popup -->
+<div id="search-popup" class="search-popup">
+	<div class="close-search theme-btn"><span class="flaticon-multiply"></span></div>
+	<div class="popup-inner">
+		<div class="overlay-layer"></div>
+    	<div class="search-form">
+        	<form method="post" action="https://gico.io/ghurbo/demos/ghurbo/index.html">
+            	<div class="form-group">
+                	<fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn">
+                    </fieldset>
+                </div>
+            </form>
+
+            <br>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Beauty</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Food</a></li>
+                <li><a href="#">LifeStyle</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+
+<script>
+		function flip(event){
+		var element = event.currentTarget;
+		if (element.className === "card") {
+		if(element.style.transform == "rotateY(180deg)") {
+		  element.style.transform = "rotateY(0deg)";
+		}
+		else {
+		  element.style.transform = "rotateY(180deg)";
+			}
+		  }
+		};
+		</script>
+</body>
+
+
+</html>

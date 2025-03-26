@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/tour-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:01:26 GMT -->
+<head>
+<meta charset="utf-8">
+   {% load static %}
+<title>Traveler's Bible | Tours Detail</title>
+<!-- Stylesheets -->
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+<link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="{% static 'js/respond.js' %}"></script><![endif]-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <style>
+.top{
+top:50px;
+}
+.padding {
+    padding: 3rem !important
+}
+
+.user-card-full {
+    overflow: hidden;
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    border: none;
+    margin-bottom: 30px;
+}
+
+.m-r-0 {
+    margin-right: 0px;
+}
+
+.m-l-0 {
+    margin-left: 0px;
+}
+
+.user-card-full .user-profile {
+    border-radius: 5px 0 0 5px;
+}
+
+.bg-c-lite-green {
+        background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+}
+
+.user-profile {
+    padding: 20px 0;
+}
+
+.card-block {
+    margin-bottom:-70px;
+    padding: 1.25rem;
+}
+
+.m-b-25 {
+    margin-bottom: 25px;
+}
+
+.img-radius {
+    border-radius: 5px;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+@media only screen and (min-width: 1400px){
+p {
+    font-size: 14px;
+}
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.text-muted {
+    color: #919aa3 !important;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.user-card-full .social-link li {
+    display: inline-block;
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+   </style>
+    </head>
+
+<body>
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+   <!-- Main Header-->
+    <header class="main-header header-style-one">
+        <div class="header-upper">
+           <div class="auto-container">
+               <div class="inner-container clearfix">
+
+                   <div class="pull-left logo-box">
+
+                       <br><div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" width="200" title=""></a></div>
+                    </div>
+
+                       <div class="nav-outer clearfix">
+                  <!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+                  <!-- Main Menu -->
+                  <nav class="main-menu navbar-expand-md">
+                     <div class="navbar-header">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="icon-bar"></span>
+                           <span class="icon-bar"></span>
+                           <span class="icon-bar"></span>
+                        </button>
+                     </div>
+
+                     <div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
+                        <ul class="navigation clearfix">
+                           <li><a href="{% url 'home' %}">Home</a>
+                           </li>
+                           <li class="dropdown"><a href="#">About Us</a>
+                              <ul>
+                                 <li><a href="{% url 'about' %}">About Us</a></li>
+
+
+                                 <li><a href="{% url 'faq' %}">Faq's</a></li>
+                              </ul>
+                           </li>
+                           <li><a href="{% url 'tour' %}">Tours</a>
+                           </li>
+                           <li><a href="{% url 'contact' %}">Contact</a></li>
+                        </ul>
+                     </div>
+                  </nav>
+
+
+
+                  <!-- Outer Box -->
+                  <div class="outer-box">
+
+                     <!-- Button Box -->
+                     {% if request.session.logname %}
+                     <div class="btn-box">
+                        <a href="#" class="theme-btn btn-style-one logname"></i><span class="fa fa-user txt"> {{ request.session.logname }} {{ request.session.date }} </span></a>
+                     </div>
+
+                     <div class="btn-box">
+                        <a href="{% url 'logout' %}" class="theme-btn btn-style-one"></i><span class="txt">Logout</span></a>
+                     </div>
+                     {% else %}
+                     <div class="btn-box">
+                        <a href="{% url 'register' %}" class="theme-btn btn-style-one logname"></i><span class="txt">Sign Up</span></a>
+                     </div>
+                     <div class="btn-box">
+                        <a href="{% url 'login' %}" class="theme-btn btn-style-one"></i><span class="txt">Log In</span></a>
+                     </div>
+                            {% endif %}
+
+
+                     <!-- Nav Btn -->
+                     <div class="nav-btn nav-toggler"><span class="icon flaticon-menu"></span></div>
+
+                  </div>
+
+               </div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+    </header>
+    <!--End Main Header -->
+      <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><span class="icon fa fa-remove"></span></div>
+
+            <nav class="menu-box">
+            <div class="nav-logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            </nav>
+        </div><!-- End Mobile Menu -->
+
+    </header>
+
+   <div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+<div class="col-xl-6 col-md-12">
+                                                <div class="card user-card-full top">
+                                                    <div class="row m-l-0 m-r-0">
+                                                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                                                            <div class="card-block text-center text-white">
+                                                                <div class="m-b-25">
+                                                                    <img src="{% static 'images/icons/user.png' %}" class="img-radius" alt="User-Profile-Image">
+                                                                </div>
+                                                                <h6 class="f-w-600">{{ guide.name }}</h6>
+                                                                <p>Experienced Guide</p>
+                                                                <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="card-block">
+                                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Email</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.email }}</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Phone</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.phone }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Monument</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.monument_name }}</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Guide Booked By</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.user_name }}</h6>
+                                                                    </div>
+                                                                </div>
+
+                                                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Date & Time</h6>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Date</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.guide_date }}</h6>
+                                                                    </div>
+                                                                    </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Start - Time</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.start_time }}</h6>
+                                                                    </div>
+                                                                      <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">End - Time</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.end_time }}</h6>
+                                                                    </div>
+                                                                </div>
+
+                                                                 <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Charges</p>
+                                                                        <h6 class="text-muted f-w-400">{{ guide.charges }}Rs.</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Payment</p>
+                                                                        <h6 class="text-muted f-w-400" style="left:20px;"><span class="fa fa-check"></span></h6>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mb-3"></div>
+                                                                <div class="mb-3"></div>
+                                                                       <div class="btn-box">
+                                                                        <center><a href="/delete-guide/{{ guide.id }}" class="theme-btn btn-style-one"></i><span class="txt">Cancel Booking</span></a></center>
+                                                             </div>
+                                                                <ul class="social-link list-unstyled m-t-40 m-b-10">
+                                                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
+                                                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
+                                                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             </div>
+                                                </div>
+                                            </div>
+<!-- Main Footer -->
+     <footer class="main-footer style-two" style="background-image:url({% static 'images/background/5.jpg' %})">
+		<div class="auto-container">
+
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+
+            	<div class="row clearfix">
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" /></a>
+
+									<div class="text">We aim to ensure that you never miss an opportunity to travel.</div>
+									<!-- Social Nav -->
+									<ul class="social-nav">
+										<li class="follow">Follow Us</li>
+										<li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+										<li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+										<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+										<li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+										<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+									</ul>
+									<div class="newsletter-box">
+										<div class="newsletter-text">Subscribe to Our Newsletter</div>
+										<!-- Newsletter Form -->
+										<div class="newsletter-form">
+											<form method="post" action="{% url 'contact' %}">
+												<div class="form-group clearfix">
+													<input type="email" name="email" placeholder="Enter Your Email Address" required>
+													<button type="submit" class="theme-btn join-btn"><span class="txt">Join</span></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>Explore</h5>
+									<ul class="footer-list">
+										<li><a href="{% url 'home' %}">Home</a></li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'tour' %}">Tours</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>Contact Info</h5>
+									<ul class="footer-list">
+										<li><span class="icon fa fa-map-marker"></span>&nbsp;Ahmedabad Gujarat</li>
+										<li><span class="icon fa fa-phone"></span>&nbsp;(91) 999-000-9999</li>
+										<li><span class="icon fa fa-envelope-o"></span>&nbsp;audioguideformonument@gmail.com</li>
+										<li><span class="icon fa fa-clock-o"></span>&nbsp;Week Days: 09.00 to 18.00 Sunday: Closed</li>
+										</ul>
+								</div>
+							</div>
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget news-widget">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Footer Bottom -->
+			<div class="footer-bottom">
+				<div class="copyright">&copy; 2023 All Rights Reserved Terms of Use By <b style="color:35px;">Traveler's Bible</b></div>
+			</div>
+	</footer>
+
+
+     </div>
+</div>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<!--Google Map APi Key-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD39_Mb1wKUcuRD-0KPmQT6SQHhEMVX1O0"></script>
+<script src="{% static 'js/map-script.js' %}"></script>
+<!--End Google Map APi-->
+
+</body>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/tour-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:02:13 GMT -->
+</html>

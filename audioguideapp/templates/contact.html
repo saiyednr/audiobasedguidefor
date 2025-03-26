@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:02:28 GMT -->
+<head>
+<meta charset="utf-8">
+<title>Traveler's Bible | Contact Us</title>
+<!-- Stylesheets -->
+	{% load static %}
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+<link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="{% static 'js/respond.js' %}"></script><![endif]-->
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <!-- Main Header-->
+    <header class="main-header header-style-one">
+        <div class="header-upper bg-light">
+        	<div class="auto-container">
+            	<div class="inner-container clearfix">
+
+                	<div class="pull-left logo-box">
+
+                    	<br><div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" width="200" title=""></a></div>
+                    </div>
+
+                   	<div class="nav-outer clearfix">
+						<!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+						<!-- Main Menu -->
+						<nav class="main-menu navbar-expand-md">
+							<div class="navbar-header">
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+
+							<div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
+								<ul class="navigation clearfix">
+									<li ><a href="{% url 'home' %}">Home</a>
+									</li>
+									<li class="dropdown"><a href="#">About Us</a>
+										<ul>
+											<li><a href="{% url 'about' %}">About Us</a></li>
+
+
+											<li><a href="{% url 'faq' %}">Faq's</a></li>
+										</ul>
+									</li>
+									<li><a href="{% url 'tour' %}">Tours</a>
+									</li>
+									<li class="current dropdown"><a href="{% url 'contact' %}">Contact</a></li>
+								</ul>
+							</div>
+						</nav>
+
+
+
+						<!-- Outer Box -->
+						<div class="outer-box">
+
+							<!-- Button Box -->
+							{% if request.session.logname %}
+							<div class="btn-box">
+								<a href="#" class="theme-btn btn-style-one logname"></i><span class="fa fa-user txt"> {{ request.session.logname }} {{ request.session.date }} </span></a>
+							</div>
+
+							<div class="btn-box">
+								<a href="{% url 'logout' %}" class="theme-btn btn-style-one"></i><span class="txt">Logout</span></a>
+							</div>
+							{% else %}
+							<div class="btn-box">
+								<a href="{% url 'register' %}" class="theme-btn btn-style-one logname"></i><span class="txt">Sign Up</span></a>
+							</div>
+							<div class="btn-box">
+								<a href="{% url 'login' %}" class="theme-btn btn-style-one"></i><span class="txt">Log In</span></a>
+							</div>
+                            {% endif %}
+
+							<!-- Nav Btn -->
+							<div class="nav-btn nav-toggler"><span class="icon flaticon-menu"></span></div>
+
+						</div>
+
+					</div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+    </header>
+    <!--End Main Header -->
+
+		<!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><span class="icon fa fa-remove"></span></div>
+
+            <nav class="menu-box">
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            </nav>
+        </div><!-- End Mobile Menu -->
+
+    </header>
+    <!--End Main Header -->
+
+	<!-- Hidden Navigation Bar -->
+    <section class="hidden-bar right-align">
+
+        <div class="hidden-bar-closer">
+            <button><span class="flaticon-multiply"></span></button>
+        </div>
+
+        <!-- Hidden Bar Wrapper -->
+        <div class="hidden-bar-wrapper">
+
+            <div class="logo">
+            	<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo2.png' %}" alt="" /></a>
+            </div>
+            <div class="content-box">
+            	<h2>About Us</h2>
+                <div class="text">
+							<p>Welcome to The Traveler's Bible, your ultimate source for travel inspiration and information. We are a team of passionate travelers and experienced tour guides who believe that travel should be accessible, enjoyable, and memorable for everyone.</p>
+
+						</div>
+                <a href="{% url 'contact' %}" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a>
+            </div>
+            <div class="contact-info">
+            	<h2>Contact Info</h2>
+              <ul class="list-style-one">
+                	<li><span class="icon fa fa-map-marker"></span>Ahmedabad, Gujarat</li>
+                    <li><span class="icon fa fa-phone"></span>(91) 999-000-9999</li>
+                    <li><span class="icon fa fa-envelope-o"></span>audioguideformonument@gmail.com</li>
+                    <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+                </ul>
+            </div>
+        </div><!-- / Hidden Bar Wrapper -->
+
+    </section>
+    <!-- End / Hidden Bar -->
+
+	<!--Page Title-->
+    <section class="page-title" style="background-image:url({% static 'images/background/contactus.jpg' %})">
+    	<div class="auto-container">
+			<h2></h2>
+			<ul class="page-breadcrumb">
+				<li><a href="{% url 'home' %}">home</a></li>
+				<li>Contact Us</li>
+			</ul>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+	{% if messages %}
+	{% for message in messages %}
+	{% if message.tags == 'error' %}
+	<div class="alert alert-danger alert-dismissible">
+		<strong style="text-transform:uppercase;">{{ message.tags }}</strong>
+		{{ message }}
+	</div>
+	{% else %}
+	<div class="alert alert-{{ message.tags }} alert-dismissible">
+		<strong style="text-transform:uppercase;">{{ message.tags }}</strong>
+		{{ message }}
+	</div>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+	<!-- Contact Page Section -->
+	<section class="contact-page-section">
+		<div class="auto-container">
+
+			<!-- Sec Title -->
+			<div class="sec-title">
+				<h2>We are ready <br> feel free contact us</h2>
+				<div class="text"> Please contact us if you would like any further information on our Traveler's Bible.</div>
+			</div>
+
+			<div class="inner-container">
+
+				<!-- Contact Form -->
+				<div class="contact-form">
+					<form method="post" action="/contact" id="contact-form">
+						{% csrf_token %}
+						<div class="row clearfix">
+
+							<!-- Form Group -->
+							<div class="form-group col-lg-6 col-md-6 col-sm-12">
+								<label>Name *</label>
+								<input type="text" name="name" placeholder="Enter Your Good Name" required>
+							</div>
+
+							<!-- Form Group -->
+							<div class="form-group col-lg-6 col-md-6 col-sm-12">
+								<label>Email *</label>
+								<input type="email" name="email" placeholder="Email *" required>
+							</div>
+
+							<!-- Form Group -->
+							<div class="form-group col-lg-6 col-md-6 col-sm-12">
+								<label>Phone *</label>
+								<input type="text" name="phone" placeholder="Phone" required>
+							</div>
+
+							<!-- Form Group -->
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label>Message *</label>
+								<textarea class="" name="message" placeholder="Message"></textarea>
+							</div>
+
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<button type="submit" class="theme-btn btn-style-one"><span class="txt">Send</span></button>
+							</div>
+
+						</div>
+					</form>
+				</div>
+
+			</div>
+
+			<div class="row clearfix">
+
+				<!-- Contact Info Box -->
+				<div class="contact-info-box col-lg-4 col-md-6 col-sm-12">
+					<div class="box-inner">
+						<h5>Address</h5>
+						<p>Ahmedabad, <br> Gujarat</p>
+					</div>
+				</div>
+
+				<!-- Contact Info Box -->
+				<div class="contact-info-box col-lg-4 col-md-6 col-sm-12">
+					<div class="box-inner">
+						<h5>Phone</h5>
+						<p>Please call us and we’ll be happy to <br> assist you</p>
+						<p>+91 1112223334</p>
+					</div>
+				</div>
+
+				<!-- Contact Info Box -->
+				<div class="contact-info-box col-lg-4 col-md-6 col-sm-12">
+					<div class="box-inner">
+						<h5>Email address</h5>
+						<p>Please email contact form and we’ll be happy to assist you</p>
+						<p>audioguideformonument@gmail.com</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+	<!-- End Contact Page Section -->
+
+	<!-- Map Section -->
+	<section class="map-section">
+		<!--Map Outer-->
+		<div class="map-outer">
+
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777290.7407159875!2d69.08245308347148!3d22.400384904965943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959051f5f0ef795%3A0x861bd887ed54522e!2sGujarat!5e0!3m2!1sen!2sin!4v1679123948598!5m2!1sen!2sin" width="1518" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		</div>
+	</section>
+	<!-- End Map Section -->
+
+	<!-- Call To Action Section -->
+	<section class="call-to-action-section" style="background-image:url({% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %})">
+		<div class="auto-container">
+			<h2>Discover the beauty and <br>culture of your destination </h2>
+			<br><br>
+			<a href="{% url 'tour' %}" class="theme-btn btn-style-one"><span class="txt">Trending Tour</span></a>
+		</div>
+	</section>
+	<!-- End Call To Action Section -->
+
+	<!-- Main Footer -->
+      <footer class="main-footer style-two" style="background-image:url({% static 'images/background/5.jpg' %})">
+		<div class="auto-container">
+
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+
+            	<div class="row clearfix">
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" /></a>
+
+									<div class="text">We aim to ensure that you never miss an opportunity to travel.</div>
+									<!-- Social Nav -->
+									<ul class="social-nav">
+										<li class="follow">Follow Us</li>
+										<li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+										<li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+										<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+										<li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+										<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+									</ul>
+									<div class="newsletter-box">
+										<div class="newsletter-text">Subscribe to Our Newsletter</div>
+										<!-- Newsletter Form -->
+										<div class="newsletter-form">
+											<form method="post" action="{% url 'contact' %}">
+												<div class="form-group clearfix">
+													<input type="email" name="email" placeholder="Enter Your Email Address" required>
+													<button type="submit" class="theme-btn join-btn"><span class="txt">Join</span></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>Explore</h5>
+									<ul class="footer-list">
+										<li><a href="{% url 'home' %}">Home</a></li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'tour' %}">Tours</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>Contact Info</h5>
+									<ul class="footer-list">
+										<li><span class="icon fa fa-map-marker"></span>&nbsp;Ahmedabad Gujarat</li>
+										<li><span class="icon fa fa-phone"></span>&nbsp;(91) 999-000-9999</li>
+										<li><span class="icon fa fa-envelope-o"></span>&nbsp;audioguideformonument@gmail.com</li>
+										<li><span class="icon fa fa-clock-o"></span>&nbsp;Week Days: 09.00 to 18.00 Sunday: Closed</li>
+										</ul>
+								</div>
+							</div>
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget news-widget">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Footer Bottom -->
+			<div class="footer-bottom">
+				<div class="copyright">&copy; 2023 All Rights Reserved Terms of Use By <b style="color:35px;">Traveler's Bible</b></div>
+			</div>
+	</footer>
+
+</div>
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-circle-up"></span></div>
+
+<!-- Search Popup -->
+<div id="search-popup" class="search-popup">
+	<div class="close-search theme-btn"><span class="flaticon-multiply"></span></div>
+	<div class="popup-inner">
+		<div class="overlay-layer"></div>
+    	<div class="search-form">
+        	<form method="post" action="https://gico.io/ghurbo/demos/ghurbo/index.html">
+            	<div class="form-group">
+                	<fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn">
+                    </fieldset>
+                </div>
+            </form>
+
+            <br>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Beauty</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Food</a></li>
+                <li><a href="#">LifeStyle</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/validate.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:02:28 GMT -->
+</html>

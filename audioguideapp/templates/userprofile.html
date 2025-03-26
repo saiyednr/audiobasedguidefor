@@ -1,0 +1,404 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .profile-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .profile-card h2 {
+            margin-top: 0;
+        }
+        .profile-card p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="profile-card">
+            <h2>Welcome, {{ name }}</h2>
+            <p>Your User Name: {{ name }}</p>
+            <p>Your Email ID: {{ email_id }}</p>
+            <p>Your Mobile ID: {{ mobile_no }}</p>
+
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/tour.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:01:24 GMT -->
+<head>
+<meta charset="utf-8">
+	{% load static %}
+<title>Traveler's Bigle | Tours</title>
+<!-- Stylesheets -->
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+<link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="{% static 'js/respond.js' %}"></script><![endif]-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .profile-card {
+            max-width: 500px;
+            margin-top: 150px;
+            margin-buttom: 250px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .profile-card h2 {
+            margin-top: 0;
+        }
+        .profile-card p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+<!-- Main Header-->
+    <header class="main-header header-style-one">
+        <div class="header-upper bg-light">
+        	<div class="auto-container">
+            	<div class="inner-container clearfix">
+
+                	<div class="pull-left logo-box">
+
+                    	<br><div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" width="200" title=""></a></div>
+                    </div>
+
+                   	<div class="nav-outer clearfix">
+						<!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+						<!-- Main Menu -->
+						<nav class="main-menu navbar-expand-md">
+							<div class="navbar-header">
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+
+							<div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
+								<ul class="navigation clearfix">
+									<li ><a href="{% url 'home' %}">Home</a>
+									</li>
+									<li class="dropdown"><a href="#">About Us</a>
+										<ul>
+											<li><a href="{% url 'about' %}">About Us</a></li>
+
+
+											<li><a href="{% url 'faq' %}">Faq's</a></li>
+										</ul>
+									</li>
+									<li class="current dropdown"><a href="{% url 'tour' %}">Tours</a>
+									</li>
+									<li><a href="{% url 'contact' %}">Contact</a></li>
+								</ul>
+							</div>
+						</nav>
+						<!-- Outer Box -->
+						<div class="outer-box">
+							<!-- Button Box -->
+							{% if request.session.logname %}
+							<div class="btn-box">
+								<a href="#" class="theme-btn btn-style-one logname"></i><span class="fa fa-user txt"> {{ request.session.logname }} {{ request.session.date }} </span></a>
+							</div>
+
+							<div class="btn-box">
+								<a href="{% url 'logout' %}" class="theme-btn btn-style-one"></i><span class="txt">Logout</span></a>
+							</div>
+							{% else %}
+							<div class="btn-box">
+								<a href="{% url 'register' %}" class="theme-btn btn-style-one logname"></i><span class="txt">Sign Up</span></a>
+							</div>
+							<div class="btn-box">
+								<a href="{% url 'login' %}" class="theme-btn btn-style-one"></i><span class="txt">Log In</span></a>
+							</div>
+                            {% endif %}
+                            {% if request.session.logname %}
+							<!-- Cart Box -->
+							<div class="cart-box">
+								<div class="dropdown">
+									<button class="cart-box-btn dropdown-toggle  " type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-cart-3"><i class="total">{{ guide | length }}</i></span>  Guide Profile </button>
+									<div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu">
+
+										{% for book in guide %}
+										<div class="cart-product">
+											<div class="inner">
+												<div class="image"><img src="{% static 'images/icons/user.png' %}" alt="" /></div>
+												<h3><a href="guide-single/{{ book.id }}">Guide-Name : {{ book.guide_name }}</a></h3>
+											</div>
+										</div>
+										{% endfor %}
+
+										<div class="cart-total">Sub Total: <span>{{ total }}Rs.</span></div>
+
+									</div>
+								</div>
+							</div>
+							<!-- End Cart Box -->
+							{% endif %}
+
+
+							<!-- Nav Btn -->
+							<div class="nav-btn nav-toggler"><span class="icon flaticon-menu"></span></div>
+
+						</div>
+
+					</div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+    </header>
+    <!--End Main Header -->
+   
+	<!-- Hidden Navigation Bar -->
+    <section class="hidden-bar right-align">
+
+        <div class="hidden-bar-closer">
+            <button><span class="flaticon-multiply"></span></button>
+        </div>
+
+        <!-- Hidden Bar Wrapper -->
+        <div class="hidden-bar-wrapper">
+
+            <div class="logo">
+            	<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo2.png' %}" alt="" /></a>
+            </div>
+            <div class="content-box">
+            	<h2>About Us</h2>
+				<div class="text"><p>Welcome to The Traveler's Bible, your ultimate source for travel inspiration and information. We are a team of passionate travelers and experienced tour guides who believe that travel should be accessible, enjoyable, and memorable for everyone.</p>
+
+                <a href="{% url 'contact' %}" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a>
+            </div>
+             <div class="contact-info">
+            	<h2>Contact Info</h2>
+                <ul class="list-style-one">
+                	<li><span class="icon fa fa-map-marker"></span>Ahmedabad Gujarat</li>
+                    <li><span class="icon fa fa-phone"></span>(91) 999-000-9999</li>
+                    <li><span class="icon fa fa-envelope-o"></span>audioguideformonument@gmail.com</li>
+                    <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+                </ul>
+        </div><!-- / Hidden Bar Wrapper -->
+
+			</div></div></section>
+    <!-- End / Hidden Bar -->
+
+	<!--Page Title-->
+    <section class="page-title" style="background-image:url({% static 'images/background/tours.jpg' %})">
+    	<div class="auto-container">
+			<h2></h2>
+			<ul class="page-breadcrumb">
+				<li><a href= "{% url 'home' %}">home</a></li>
+				<li>User Profile</li>
+			</ul>
+        </div>
+    </section>
+
+<div class="auto-container d-flex justify-content-center">
+        
+    <div class="profile-card">
+        <img src="{{ propic.url }}">
+        <h2>Welcome, {{ name }}</h2>
+        <p>Your User Name: {{ name }}</p>
+        <p>Your Email ID: {{ email_id }}</p>
+        <p>Your Mobile ID: {{ mobile_no }}</p>
+        <p> City: {{ citys }} </p>
+
+    </div>
+</div>
+	
+</div>
+	<!-- Main Footer -->
+    <footer class="main-footer style-two" style="background-image:url({% static 'images/background/5.jpg' %}); margin-top:50px;">
+		<div class="auto-container">
+
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+
+            	<div class="row clearfix">
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<div class="logo">
+                                    	<a href="{% url 'home' %}"><img src="{% static 'images/icons/Logo.png' %}" alt="" /></a>
+                                    </div>
+									<div class="text">We aim to ensure that you never miss an opportunity to travel.</div>
+									<!-- Social Nav -->
+									<ul class="social-nav">
+										<li class="follow">Follow Us</li>
+										<li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+										<li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+										<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+										<li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+										<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+									</ul>
+									<div class="newsletter-box">
+										<div class="newsletter-text">Subscribe to Our Newsletter</div>
+										<!-- Newsletter Form -->
+										<div class="newsletter-form">
+											<form method="post" action="{% url 'contact' %}">
+												<div class="form-group clearfix">
+													<input type="email" name="email" placeholder="Enter Your Email Address" required>
+													<button type="submit" class="theme-btn join-btn"><span class="txt">Join</span></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>solutions</h5>
+									<ul class="footer-list">
+										<li><a href="#destination">Destination</a></li>
+										<li><a href="{% url 'tour' %}">Attractions</a></li>
+										<li><a href="#heritage">Heritage</a></li>
+										<li><a href="#">Events & Festivals</a></li>
+										<li><a href="#">Food & Restaurants</a></li>
+<!--										<li><a href="#">Outdoors</a></li>-->
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h5>explore</h5>
+									<ul class="footer-list">
+									<li><a href="{% url 'home' %}">Home</a></li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'tour' %}">Tours</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+										</ul>
+								</div>
+							</div>
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget news-widget">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Footer Bottom -->
+			<div class="footer-bottom">
+				<div class="copyright">&copy; 2023 All Rights Reserved Terms of Use By <b style="color:35px;">Traveler's Bible</b></div>
+			</div>
+
+	</footer>	</div>
+
+	</footer>
+
+
+</div>
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-circle-up"></span></div>
+
+<!-- Search Popup -->
+<div id="search-popup" class="search-popup">
+	<div class="close-search theme-btn"><span class="flaticon-multiply"></span></div>
+	<div class="popup-inner">
+		<div class="overlay-layer"></div>
+    	<div class="search-form">
+        	<form method="post" action="https://gico.io/ghurbo/demos/ghurbo/index.html">
+            	<div class="form-group">
+                	<fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn">
+                    </fieldset>
+                </div>
+            </form>
+
+            <br>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Beauty</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Food</a></li>
+                <li><a href="#">LifeStyle</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+<!-- Mirrored from gico.io/ghurbo/demos/ghurbo/tour.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jan 2023 16:01:24 GMT -->
+</html>

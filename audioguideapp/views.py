@@ -1,4 +1,5 @@
 import random2
+import random
 from django.core.exceptions import *
 from django.http import HttpResponse
 from django.shortcuts import render, redirect

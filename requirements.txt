@@ -5,3 +5,4 @@ gunicorn
 reportlab
 random2
 google_auth_oauthlib
+whitenoise
